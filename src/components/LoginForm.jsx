@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../context/user/userContext";
 import{types} from '../context/user/userReducer'
 import axios from'axios'
+import jwt from "jwt-decode"
 import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
@@ -48,10 +49,11 @@ export const LoginForm = () => {
                 "Context-Type":"application/json"
             }
         })
-
+        const tokenDecodificado=jwt(data.token)
+        console.log(tokenDecodificado)
         dispatch({
             type:types.setUserState,
-            payload:data
+            payload:tokenDecodificado
         })
         // setUser(initialUser)
         window.alert('Usuario logueado')

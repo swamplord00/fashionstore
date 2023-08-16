@@ -3,8 +3,8 @@ import { UserContext } from '../context/user/userContext'
 
 export const HomePage = () => {
 
-  const [user,]=useContext(UserContext)  
-  console.log(user)
+  const [state,]=useContext(UserContext)  
+  console.log(state)
   return (
     <>
         <h1>
@@ -12,13 +12,10 @@ export const HomePage = () => {
         </h1>
         <hr />
         {
-            (user)?(
-                <>
-                    {JSON.stringify(user,null,2)}
-                </>
-            ):(
-                <h2>No hay usuario</h2>
-            )
+            (state?.user)
+                ?(<h2>Bienvenido{state.user.username}</h2>)
+                :(<h2>Bienvenido registrate o inicia sesión</h2>)
+            
         }
     </>
   )

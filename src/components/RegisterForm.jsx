@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/user/userContext";
-
+import jwt from "jwt-decode"
 import{types}from'../context/user/userReducer'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
@@ -53,9 +53,11 @@ export const RegisterForm = () => {
           "Context-Type":"application/json"
         }
       })
+      const tokenDecodificado=jwt(data.token)
+      console.log(tokenDecodificado)
       dispatch({
         type:types.setUserState,
-        payload:data
+        payload:tokenDecodificado
       })
       console.log(data)
       window.alert("Registro exitoso")
