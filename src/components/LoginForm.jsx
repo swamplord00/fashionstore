@@ -6,7 +6,7 @@ import jwt from "jwt-decode"
 import { useNavigate } from "react-router-dom";
 
 export const LoginForm = () => {
-
+  const [isFetching,setIsFetching]=useState(false)
   const [,dispatch] =useContext(UserContext)
 
   const navigate=useNavigate()
@@ -42,6 +42,7 @@ export const LoginForm = () => {
   const handleSubmit =async (e) => {
 
     e.preventDefault();
+    setIsFetching(true)
     try {
 
         const{data}= await axios.post('https://backend-p5.onrender.com/users/login',formState,{
@@ -57,6 +58,7 @@ export const LoginForm = () => {
         })
         // setUser(initialUser)
         window.alert('Usuario logueado')
+        setIsFetching(false)
         navigate('/')
 
     } catch (error) {
@@ -67,6 +69,7 @@ export const LoginForm = () => {
             type:types.setError,
             payload:error
         })
+        setIsFetching(false)
     }
     
     addToDB(formState);
@@ -173,9 +176,13 @@ export const LoginForm = () => {
 
               onClick={handleSubmit}
 
-            >
+              disabled={isFetching}
 
-              Ingresar
+            >
+            {
+                isFetching?'Cargando...':'Ingresar'
+            }
+              
 
             </button>
 

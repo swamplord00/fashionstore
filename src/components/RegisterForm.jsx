@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 
 export const RegisterForm = () => {
-
+  const [isFetching,setIsFetching]=useState(false)
   const [,dispatch]=useContext(UserContext)
 
   const initForm = {
@@ -46,6 +46,7 @@ export const RegisterForm = () => {
   const handleSubmit = async(e) => {
 
     e.preventDefault();
+    setIsFetching(true)
     try {
 
       const {data}= await axios.post('https://backend-p5.onrender.com/users',formState,{
@@ -61,7 +62,7 @@ export const RegisterForm = () => {
       })
       console.log(data)
       window.alert("Registro exitoso")
-      
+      setIsFetching(false)
     } catch (error) {
       console.log(error)
       window.alert("Error al registrar el usuario")
@@ -69,6 +70,7 @@ export const RegisterForm = () => {
         type:types.setError,
         payload:data
       })
+      setIsFetching(false)
     }
 
     console.log(formState)
@@ -226,6 +228,8 @@ export const RegisterForm = () => {
               id="contact"
 
               onClick={handleSubmit}
+
+              disabled={isFetching}
 
             >
 
