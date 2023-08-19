@@ -3,7 +3,7 @@ import { UserContext } from "../context/user/userContext";
 import jwt from "jwt-decode"
 import{types}from'../context/user/userReducer'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+
 
 
 export const RegisterForm = () => {
@@ -68,7 +68,7 @@ export const RegisterForm = () => {
       window.alert("Error al registrar el usuario")
       dispatch({
         type:types.setError,
-        payload:data
+        payload:error
       })
       setIsFetching(false)
     }

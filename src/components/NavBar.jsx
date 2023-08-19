@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { ModalLogin } from "./ModalLogin";
 
 
 export const NavBar = () => {
 
+  const [toggleModal,setToggleModal]=useState(false)
+  const toggle=()=>{
+        setToggleModal(!toggleModal)
+  }  
   return (
 
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark px-3">
@@ -66,6 +72,11 @@ export const NavBar = () => {
             Ingresar
 
           </NavLink>
+
+        {
+            (toggleModal)&&<ModalLogin toggle={toggle}/>
+        }
+        <button onClick={toggle}>mostrar modal</button>
 
         </div>
 

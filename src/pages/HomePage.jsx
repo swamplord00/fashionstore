@@ -1,10 +1,13 @@
-import React, { useContext } from 'react'
+import  { useContext, } from 'react'
 import { UserContext } from '../context/user/userContext'
 
-export const HomePage = () => {
 
+export const HomePage = () => {
+  
   const [state,]=useContext(UserContext)  
   console.log(state)
+ 
+
   return (
     <>
         <h1>
@@ -17,6 +20,7 @@ export const HomePage = () => {
                 :(<h2>Bienvenido registrate o inicia sesión</h2>)
             
         }
+        
     </>
   )
 }
