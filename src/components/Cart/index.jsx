@@ -1,0 +1,48 @@
+/* eslint-disable react/prop-types */
+import "./style.css"
+import axios from 'axios'
+export const Cart = () => {
+    
+    const comprar=async()=>{
+    const paymentUrl='http://localhost:4000/payment/create-payment'
+    const {data}=await axios.post(paymentUrl)
+    console.log(data.detail.response.init_point)
+    window.location.href=data.detail.response.init_point
+  } 
+  return (
+    <div className="cart">
+      <table className="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody className="table-group-divider">
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+      
+    
+    <button onClick={comprar}>comprar</button>
+    </div>
+  )
+}
