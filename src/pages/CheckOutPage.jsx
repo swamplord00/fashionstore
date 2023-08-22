@@ -2,13 +2,9 @@
 
 export const CheckOutPage = () => {
   return (
-    <div>
-      
-      
-      
-      CheckOut
-      
-      
-      </div>
+    <>
+      <h1>CheckOut</h1>
+
+    </>
   )
 }

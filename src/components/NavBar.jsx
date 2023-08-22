@@ -1,95 +1,120 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ModalLogin } from "./ModalLogin";
+
 import { ModalCart } from "./ModalCart";
+import React from "react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure} from "@nextui-org/react";
+import { ModalAuth } from "./ModalAuth";
+
 
 
 export const NavBar = () => {
-
-  const [toggleModal,setToggleModal]=useState(false)
+  
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  
   const [toggleModalCart,setToggleModalCart]=useState(false)
-  const toggle=()=>{
-        setToggleModal(!toggleModal)
-  }  
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+  const menuItems = [
+    "Profile",
+    "Dashboard",
+    "Activity",
+    "Analytics",
+    "System",
+    "Deployments",
+    "My Settings",
+    "Team Settings",
+    "Help & Feedback",
+    "Log Out",
+  ];
+
+  
 
   const toggleCart=()=>{
     setToggleModalCart(!toggleModalCart)
   }
   return (
 
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark px-3">
+    <>
+    
 
-      <div className="navbar-collapse">
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
+      <NavbarContent>
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          className="sm:hidden"
+        />
+        <NavLink to='/'>
 
-        <div className="navbar-nav">
+          <NavbarBrand>
+            <p className="font-bold text-inherit">FashionStore</p>
+          </NavbarBrand>
 
-          <NavLink className="nav-item nav-link" to="/">
+        </NavLink>
+      </NavbarContent>
 
-            Inicio
+      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarItem>
 
-          </NavLink>
+            <Link color="foreground" as={NavLink} to='/Catalogue'>
+              Catalogo
+            </Link>
 
-        </div>
+          
+        </NavbarItem>
+        <NavbarItem isActive>
+          <Link href="#" aria-current="page">
+            
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link color="foreground" href="#">
+            Integrations
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent justify="end">
+        <NavbarItem className="hidden lg:flex">
+          <Link>Login</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Button  color="primary" onClick={onOpen} variant="flat">
+            Sign Up
+          </Button>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarMenu>
+        {menuItems.map((item, index) => (
+          <NavbarMenuItem key={`${item}-${index}`}>
+            <Link
+              color={
+                index === 2 ? "primary" : index === menuItems.length - 1 ? "danger" : "foreground"
+              }
+              className="w-full"
+              href="#"
+              size="lg"
+            >
+              {item}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
+    
+    {
+            (toggleModalCart)&&<ModalCart toggle={toggleCart}/>
+    }
 
-        <div className="navbar-nav">
 
-          <NavLink className="nav-item nav-link" to="/CataloguePage">
+    <ModalAuth isOpen={isOpen} onOpenChange={onOpenChange} />
+    </>
 
-            Catálogo
 
-          </NavLink>
 
-        </div>
+    
 
-        <div className="navbar-nav">
 
-          <NavLink className="nav-item nav-link" to="/UsPage">
 
-            Quiénes somos
-
-          </NavLink>
-
-        </div>
-
-        <div className="navbar-nav">
-
-        <NavLink className="nav-item nav-link" to="/ContactPage">
-
-            Contacto
-
-          </NavLink>
-
-        </div>
-
-        <div className="navbar-nav">
-
-        <NavLink className="nav-item nav-link" to="/RegisterFormPage">
-
-            Registrarse
-
-          </NavLink>
-
-        </div>
-
-        <div className="navbar-nav">
-        {
-            (toggleModal)&&<ModalLogin toggle={toggle}/>
-        }
-        <button onClick={toggle}>Login</button>
-
-        </div>
-
-        <div className="navbar-nav">
-            {
-                (toggleModalCart)&&<ModalCart toggle={toggleCart}/>
-            }
-            <button onClick={toggleCart}>carrito</button>
-
-        </div>
-
-      </div>
-
-    </nav>
 
   );
 

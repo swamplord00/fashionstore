@@ -1,8 +1,8 @@
 import  { useContext, } from 'react'
-import { UserContext } from '../context/user/userContext'
+import { UserContext } from '../../context/user/userContext'
 
 
-export const HomePage = () => {
+const HomePage = () => {
   
   const [state,]=useContext(UserContext)  
   console.log(state)
@@ -16,11 +16,13 @@ export const HomePage = () => {
         <hr />
         {
             (state?.user)
-                ?(<h2>Bienvenido{state.user.username}</h2>)
-                :(<h2>Bienvenido registrate o inicia sesión</h2>)
+                ?(<h2>¡Bienvenido {state.user.username}!.</h2>)
+                :(<h2>Bienvenido, registrate o inicia sesión.</h2>)
             
         }
         
     </>
   )
 }
+
+export default HomePage

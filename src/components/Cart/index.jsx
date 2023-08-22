@@ -4,10 +4,27 @@ import axios from 'axios'
 export const Cart = () => {
     
     const comprar=async()=>{
-    const paymentUrl='http://localhost:4000/payment/create-payment'
-    const {data}=await axios.post(paymentUrl)
-    console.log(data.detail.response.init_point)
-    window.location.href=data.detail.response.init_point
+    const paymentUrl='https://backend-p5.onrender.com/payment/create-payment'
+    const paymentUrl2='http://localhost:4000/payment/create-payment'
+
+    try {
+      const {data}=await axios.post(paymentUrl)
+      if(data){
+          console.log(data.detail.response.init_point)
+          console.log('render')
+          window.location.href=data.detail.response.init_point
+      }else{
+          const {data}=await axios.post(paymentUrl2)
+          console.log(data.detail.response.init_point)
+          console.log('localhost')
+          window.location.href=data.detail.response.init_point
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
+    
+    
   } 
   return (
     <div className="cart">
@@ -35,7 +52,7 @@ export const Cart = () => {
     </tr>
     <tr>
       <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
+      <td colSpan="2">Larry the Bird</td>
       <td>@twitter</td>
     </tr>
   </tbody>
