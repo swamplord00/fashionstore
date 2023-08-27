@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
 import "./style.css"
 import axios from 'axios'
+
+
+
+
+
 export const Cart = () => {
+
+
     
     const comprar=async()=>{
     const paymentUrl='https://backend-p5.onrender.com/payment/create-payment'

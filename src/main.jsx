@@ -9,7 +9,8 @@ import { NextUIProvider } from '@nextui-org/react'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <NextUIProvider>
-
+    <main className="dark text-foreground bg-background">
+    
       <BrowserRouter>
         <UserProvider>
 
@@ -18,6 +19,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </UserProvider>
 
     </BrowserRouter>
+    
+    </main>
 
     </NextUIProvider>
   </React.StrictMode>

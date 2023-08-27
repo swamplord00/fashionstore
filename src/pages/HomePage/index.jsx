@@ -2,6 +2,7 @@ import  { useContext, } from 'react'
 import { UserContext } from '../../context/user/userContext'
 
 
+
 const HomePage = () => {
   
   const [state,]=useContext(UserContext)  
@@ -10,9 +11,12 @@ const HomePage = () => {
 
   return (
     <>
-        <h1>
+        
+        <h1 className="px-unit-5 py-unit-5 min-w-unit-3xl">
             HomePage
         </h1>
+
+        
         <hr />
         {
             (state?.user)

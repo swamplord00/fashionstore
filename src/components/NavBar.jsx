@@ -38,7 +38,7 @@ export const NavBar = () => {
     <>
     
 
-    <Navbar onMenuOpenChange={setIsMenuOpen}>
+    <Navbar onMenuOpenChange={setIsMenuOpen} className="purple-dark">
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -69,7 +69,7 @@ export const NavBar = () => {
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Integrations
+            Quiénes somos
           </Link>
         </NavbarItem>
       </NavbarContent>
