@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom'
 import  HomePage  from '../pages/HomePage'
 import { SuccessPurchase } from '../pages/SuccessPurchase'
 import { Catalogue } from '../pages/CataloguePage'
+import { ProductPage } from '../pages/ProductPage'
 
 export const MainRouter = () => {
   return(
@@ -16,6 +17,7 @@ export const MainRouter = () => {
             <Route path='/AdminDashBoard' element={<></>} />
             <Route path='/success-purchase' element={<SuccessPurchase/>}/>
             <Route path="/Catalogue" element={<Catalogue/>} />
+            <Route path="/Catalogue/:idProduct" element={<ProductPage/>}/>
 
         </Routes>
 

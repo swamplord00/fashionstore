@@ -11,6 +11,11 @@ const userReducer=(state,action={})=>{
                 user:action.payload,
 
             }
+        case types.setError:
+            return{
+                ...state,
+                error:action.payload,
+            }
         default:
             return state
     }

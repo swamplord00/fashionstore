@@ -5,6 +5,7 @@ import { ModalCart } from "./ModalCart";
 import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure} from "@nextui-org/react";
 import { ModalAuth } from "./ModalAuth";
+import { CartIcon } from "./CartIcon";
 
 
 
@@ -53,7 +54,7 @@ export const NavBar = () => {
         </NavLink>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden sm:flex gap-4 sm:items-center sm:justify-center" justify="center">
         <NavbarItem>
 
             <Link color="foreground" as={NavLink} to='/Catalogue'>
@@ -67,9 +68,10 @@ export const NavBar = () => {
             
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Quiénes somos
+        <NavbarItem className="mt-2">
+          <Link color="foreground" href="#" className="gap-2">
+          <CartIcon/>
+            Carrito
           </Link>
         </NavbarItem>
       </NavbarContent>
