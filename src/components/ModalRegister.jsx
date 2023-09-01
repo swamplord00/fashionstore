@@ -56,6 +56,8 @@ export const ModalRegister = ({ setTypeAuth, onClose }) => {
           },
         }
       );
+      localStorage.setItem("userProfile",JSON.stringify(data.token))
+
       const tokenDecodificado = jwtDecode(data.token);
       console.log(tokenDecodificado);
       dispatch({

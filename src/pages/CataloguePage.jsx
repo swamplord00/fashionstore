@@ -4,7 +4,7 @@ import { ProductCard } from "../components/ProductsCards"
 
 import { ProductContext } from "../context/products/productContext"
 import axios from "axios"
-import { types } from "../context/products/productReducer"
+import { productTypes } from "../context/products/productReducer"
 import { MenuProduct } from "../components/MenuProducts"
 import { Divider, Spacer } from "@nextui-org/react"
 
@@ -18,8 +18,8 @@ const productos=[
     filtro:"Hombre",
     temporada:'2023',
     img:{
-      thumbnail:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000',
-      imageZoom:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000'
+      thumbnail:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg',
+      imageZoom:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg'
     },
     id:12321,
   },
@@ -31,34 +31,28 @@ const productos=[
     filtro:"Mujer",
     temporada:'2023',
     img:{
-      thumbnail:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000',
-      imageZoom:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000'
+      thumbnail:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg',
+      imageZoom:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg'
     },
     id:12322,
   },
   {
-    titulo:'Unisex',
-    catalogo_tipo_id:"ropa",
-    catalogo_genero_id:"Unisex",
-    catalogo_estilo_id:"sport",
-    filtro:"Unisex",
+    titulo:'Catálogo Accesorios',
+    filtro:"Accesorios",
     temporada:'2023',
     img:{
-      thumbnail:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000',
-      imageZoom:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000'
+      thumbnail:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg',
+      imageZoom:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg'
     },
     id:12323,
   },
   {
-    titulo:'Catálogo Accesorios',
-    catalogo_tipo_id:"Accesorios",
-    catalogo_genero_id:"Unisex",
-    catalogo_estilo_id:"sport",
-    filtro:"Accesorios",
+    titulo:'Catálogo Perfumes',
+    filtro:"Perfumes",
     temporada:'2023',
     img:{
-      thumbnail:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000',
-      imageZoom:'https://nikeclprod.vteximg.com.br/arquivos/ids/624979-1000-1000/DX1071_010_A_PREM.jpg?v=638036903320170000'
+      thumbnail:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg',
+      imageZoom:'https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg'
     },
     id:12324,
   },
@@ -69,7 +63,7 @@ const productos=[
 
 
 export const Catalogue = () => {
-  const [Cartstate,dispatch]=useContext(ProductContext)
+  const [cartState,dispatch]=useContext(ProductContext)
   const [state,setState]=useState([])
   const [filter,setFilter]=useState("")
   const [filteredProducts,setFilteredProducts]=useState(state)
@@ -80,14 +74,14 @@ export const Catalogue = () => {
     console.log(filter)
     if(filter==="Accesorios"){
       return state.filter((el)=>{
-        console.log(el.catalogo_tipo_id)
+        console.log(el.catalogo)
         console.log(filter)
-        return el.catalogo_tipo_id===filter
+        return el.catalogo===filter
         
     })
     }
     const filtered=state.filter((el)=>{
-        return el.catalogo_genero_id===filter
+        return el.catalogo===filter
     })
     return filtered
   }
@@ -103,15 +97,12 @@ export const Catalogue = () => {
       try {
         const { data } = await axios.get("https://backend-p5.onrender.com/products");
         setState(data.detail)
-
-        dispatch({
-          type: types.setCartState,
-          payload: data.detail,
-        });
+        console.log(data)
+        
       } catch (err) {
         console.log(err);
         dispatch({
-          type: types.setError,
+          type: productTypes.setError,
           payload: err,
         });
       }
@@ -125,27 +116,7 @@ export const Catalogue = () => {
     <>
       <div>
           <h1>Catalogo de Productos</h1>
-
-          {/* <div>
-            <button type="button" onClick={()=>setFilterGender(
-              state?.filter((item)=>(
-                <ProductCard key={item._id} item={item}/>
-              ))
-            )}>Genero</button>
-            <button type="button" onClick={()=>setFilterType(
-              state?.filter((item)=>(
-                <ProductCard key={item._id} item={item}/>
-              ))
-            )}>Tipo</button>
-            <button type="button" onClick={()=>setfilterStyle(
-              state?.filter((item)=>(
-                <ProductCard key={item._id} item={item}/>
-              ))
-            )}>Estilo</button>
-
-          </div> */}
           
-
           <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
             
            

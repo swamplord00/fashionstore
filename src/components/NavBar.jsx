@@ -1,11 +1,13 @@
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { ModalCart } from "./ModalCart";
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NavbarMenu, NavbarMenuItem, NavbarMenuToggle, useDisclosure, button} from "@nextui-org/react";
 import { ModalAuth } from "./ModalAuth";
 import { CartIcon } from "./CartIcon";
+import { UserContext } from "../context/user/userContext";
+import { types } from "../context/user/userReducer";
 
 
 
@@ -15,6 +17,17 @@ export const NavBar = () => {
   
   const [toggleModalCart,setToggleModalCart]=useState(false)
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+  const [,dispatch]=useContext(UserContext)
+  const navigate=useNavigate()
+
+  const handleLogout=()=>{
+    console.log("cerrando sesión")
+    dispatch({type:types.setLogout})
+    navigate('/')
+  }
+
+  const[user]=useContext(UserContext)
 
   const menuItems = [
     "Profile",
@@ -68,20 +81,21 @@ export const NavBar = () => {
             
           </Link>
         </NavbarItem>
+        Carrito
         <NavbarItem className="mt-2">
-          <Link color="foreground" href="#" className="gap-2">
+          <button color="foreground"  onClick={toggleCart} className="gap-2">
           <CartIcon/>
-            Carrito
-          </Link>
+          </button>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="hidden lg:flex">
-          <Link>Login</Link>
+          <Link onClick={handleLogout}>Logout</Link>
         </NavbarItem>
         <NavbarItem>
+          {user ?user.user.username:null}
           <Button  color="primary" onClick={onOpen} variant="flat">
-            Sign Up
+            Sign in
           </Button>
         </NavbarItem>
       </NavbarContent>

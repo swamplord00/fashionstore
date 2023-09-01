@@ -1,6 +1,7 @@
 export const types={
     setUserState:'[USER] Set User State',
     setError:'[USER] Set Error',
+    setLogout:'[USER] SET logout',
 }
 
 const userReducer=(state,action={})=>{
@@ -16,6 +17,9 @@ const userReducer=(state,action={})=>{
                 ...state,
                 error:action.payload,
             }
+
+        case types.setLogout:
+            return null
         default:
             return state
     }

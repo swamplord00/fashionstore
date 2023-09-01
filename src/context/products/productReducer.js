@@ -1,4 +1,4 @@
-export const types={
+export const productTypes={
     setProductState:'[PRODUCT] Set Product State',
     setError:'[PRODUCT] Set Error',
     setCartState: '[CART] Set Cart State'
@@ -6,21 +6,22 @@ export const types={
 
 const productReducer=(state,action={})=>{
     switch(action.type){
-        case types.setProductState:
+        case productTypes.setProductState:
             return{
                 ...state,
                 product:action.payload,
 
             }
-        case types.setError:
+        case productTypes.setError:
             return{
                 ...state,
                 error:action.payload,
             }
-        case types.setCartState:
+        case productTypes.setCartState:
+            
             return{
                 ...state,
-                cart:action.payload,
+                cart:[...state.cart,action.payload],
             }
         default:
             return state

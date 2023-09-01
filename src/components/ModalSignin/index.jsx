@@ -55,6 +55,8 @@ export const ModalSignin=({setTypeAuth, onClose})=> {
                   "Context-Type":"application/json"
               }
           })
+
+          localStorage.setItem("userProfile",JSON.stringify(data.token))
           const tokenDecodificado=jwtDecode(data.token)
           console.log(tokenDecodificado)
           dispatch({

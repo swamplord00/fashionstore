@@ -4,7 +4,10 @@ import { ProductContext } from "./productContext"
 import productReducer from "./productReducer"
 
 export const ProductProvider = ({children}) => {
-  const [state,dispatch]=useReducer(productReducer,null)
+ const initProductCart={
+    cart:[]
+ }
+  const [state,dispatch]=useReducer(productReducer,initProductCart)
   return (
     <ProductContext.Provider value={[state,dispatch]}>
         {children}
