@@ -63,7 +63,7 @@ const productos=[
 
 
 export const Catalogue = () => {
-  const [cartState,dispatch]=useContext(ProductContext)
+  const [,dispatch]=useContext(ProductContext)
   const [state,setState]=useState([])
   const [filter,setFilter]=useState("")
   const [filteredProducts,setFilteredProducts]=useState(state)
