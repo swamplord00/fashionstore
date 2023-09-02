@@ -12,11 +12,11 @@ export const MenuProduct = ({ item,setFilter }) => {
           className="w-full h-[300px] col-span-12 sm:col-span-7"
         >
           <CardHeader className="absolute z-10 top-1 flex-col items-start">
-            <p className="text-tiny text-white/60 uppercase font-bold">
+            <p className="text-tiny text-white/70 uppercase font-bold">
               {item.temporada}
             </p>
             
-            <h4 className="text-white/90 font-medium text-xl">
+            <h4 className="text-black/90 font-medium text-xl">
               {item.titulo}
             </h4>
           </CardHeader>
@@ -34,9 +34,9 @@ export const MenuProduct = ({ item,setFilter }) => {
                 src="/images/breathing-app-icon.jpeg"
               />
               <div className="flex flex-col">
-                <p className="text-tiny text-white/60">Calidad </p>
+                <p className="text-tiny text-white/60">{item.titulo} </p>
                 <p className="text-tiny text-white/60">
-                  Diseños Excluisivo
+                  {item.temporada}
                 </p>
               </div>
             </div>

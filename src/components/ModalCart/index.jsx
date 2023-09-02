@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { Cart } from "../Cart"
+
 import { SlideOverCart } from "../SlideOverCart"
 import "./style.css"
 

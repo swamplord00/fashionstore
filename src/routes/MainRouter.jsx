@@ -7,6 +7,7 @@ import { SuccessPurchase } from '../pages/SuccessPurchase'
 import { Catalogue } from '../pages/CataloguePage'
 import { ProductPage } from '../pages/ProductPage'
 import { CheckOutPage } from '../pages/CheckOutPage'
+import { UserProfile } from '../pages/UserProfile'
 
 export const MainRouter = () => {
   return(
@@ -20,6 +21,7 @@ export const MainRouter = () => {
             <Route path="/Catalogue" element={<Catalogue/>} />
             <Route path="/Catalogue/:idProduct" element={<ProductPage/>}/>
             <Route path="/CheckOut" element={<CheckOutPage/>}/>
+            <Route path="/Profile" element={<UserProfile/>}/>
 
 
         </Routes>

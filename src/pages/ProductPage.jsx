@@ -16,14 +16,15 @@ export const ProductPage = () => {
  const[productoManipulado,setProductoManipulado]=useState({})
  const [talla, setTalla]=useState('')
  const[color,setColor]=useState('')
- 
+ const [qty,setQty]=useState(0) 
+
  useEffect(()=>{
      const getProductById=async()=>{
          const productById= await axios.get(`https://backend-p5.onrender.com/products/item/${idProduct}`)
          setProducto(productById.data.detail)
          setProductoManipulado({...productById.data.detail,color:'',talla:''})
-        }
-        getProductById()
+    }
+    getProductById()
         
         
     },[])
@@ -32,11 +33,30 @@ export const ProductPage = () => {
     
 const addCart=(e)=>{
     e.preventDefault()
-   
-    dispatch({
-        type:productTypes.setCartState,
-        payload:productoManipulado
-    })
+   let productoTallaColor=productoManipulado.id+productoManipulado.color+productoManipulado.talla
+    if(!productState.cart.find((el)=>el._id+el.color+el.talla===productoTallaColor)){
+
+        
+        dispatch({
+            type:productTypes.setCartState,
+            payload:productoManipulado
+        })
+        
+    }else{
+        const carroUpdated=productState.cart.map((el)=>{
+            if(el._id+el.color+el.talla===productoTallaColor){
+                setQty(qty+1)
+                return {...el,qty}
+            }else{
+                return el
+            }
+            
+        })
+        dispatch({
+            type:productTypes.updateCartState,
+            payload:carroUpdated,
+        })
+    }
     console.log(productoManipulado)
     console.log(productState)
 }
